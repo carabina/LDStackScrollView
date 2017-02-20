@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:LDStackScrollView.xcodeproj">
+      location = "self:LDStackScrollViewSample.xcodeproj">
    </FileRef>
 </Workspace>

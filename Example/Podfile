@@ -1,6 +1,0 @@
-use_frameworks!
-target 'LDStackScrollView_Tests' do
-  pod 'LDStackScrollView', :path => '../'
-  
-  
-end
