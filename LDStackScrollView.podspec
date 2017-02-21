@@ -9,17 +9,8 @@
 Pod::Spec.new do |s|
   s.name             = 'LDStackScrollView'
   s.version          = '1.0'
-  s.summary          = 'A simple UIView with a UIStackView embed in a UIScrollView .Bored by do this architecture on every project I made my own quick library for all my projects. Feel free to improve.'
+  s.summary          = 'A simple UIView with a UIStackView embed in a UIScrollView.'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
 
   s.homepage         = 'https://github.com/leoderbois/LDStackScrollView'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
