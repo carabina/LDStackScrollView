@@ -10,8 +10,8 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class LDStackScrollView: UIView {
-    let scrollView = UIScrollView()
-    public let stackView = UIStackView()
+    public let scrollView = UIScrollView()
+    let stackView = UIStackView()
     
     lazy var constraintLayoutHeight : NSLayoutConstraint = {
          return self.stackView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor)
@@ -88,4 +88,50 @@ extension LDStackScrollView {
         constraintLayoutWidth.isActive = axis == .vertical
         constraintLayoutHeight.isActive = axis == .horizontal
     }
+}
+// MARK: - StackView Wrap
+@available(iOS 9.0, *)
+extension LDStackScrollView {
+    public  func addArrangedSubview(_ view: UIView){
+        stackView.addArrangedSubview(view)
+    }
+
+    public func removeArrangedSubview(_ view: UIView){
+        stackView.removeArrangedSubview(view)
+    }
+
+    public func insertArrangedSubview(_ view: UIView, at stackIndex: Int){
+        stackView.insertArrangedSubview(view, at: stackIndex)
+    }
+
+
+    public var distribution: UIStackViewDistribution{
+        set{
+            stackView.distribution = distribution
+        }
+        get{
+            return stackView.distribution
+        }
+    }
+    
+
+    public var alignment: UIStackViewAlignment{
+        set{
+            stackView.alignment = alignment
+        }
+        get{
+            return stackView.alignment
+        }
+    }
+
+    
+    public var spacing: CGFloat{
+        set{
+            stackView.spacing = spacing
+        }
+        get{
+            return stackView.spacing
+        }
+    }
+
 }
