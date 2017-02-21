@@ -1,15 +1,19 @@
 # LDStackScrollView
 
-[![CI Status](http://img.shields.io/travis/leoderbois/LDStackScrollView.svg?style=flat)](https://travis-ci.org/leoderbois/LDStackScrollView)
 [![Version](https://img.shields.io/cocoapods/v/LDStackScrollView.svg?style=flat)](http://cocoapods.org/pods/LDStackScrollView)
 [![License](https://img.shields.io/cocoapods/l/LDStackScrollView.svg?style=flat)](http://cocoapods.org/pods/LDStackScrollView)
 [![Platform](https://img.shields.io/cocoapods/p/LDStackScrollView.svg?style=flat)](http://cocoapods.org/pods/LDStackScrollView)
 
+A simple UIView with a UIStackView embed in a UIScrollView .Bored by do this architecture on every project I made my own quick library for all my projects. Feel free to improve.
+
+
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the LDStackScrollViewSample directory first.
 
 ## Requirements
+
+- `iOS 9` minimum (due to UIStackView)
 
 ## Installation
 
@@ -20,9 +24,13 @@ it, simply add the following line to your Podfile:
 pod "LDStackScrollView"
 ```
 
+## Demo
+
+![demo](exemple.gif)
+
 ## Author
 
-leoderbois, developer@leoderbois.com
+Léo Derbois, developer@leoderbois.com
 
 ## License
 

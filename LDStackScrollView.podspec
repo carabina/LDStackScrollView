@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'LDStackScrollView'
   s.version          = '1.0'
-  s.summary          = 'A short description of LDStackScrollView.'
+  s.summary          = 'A simple UIView with a UIStackView embed in a UIScrollView .Bored by do this architecture on every project I made my own quick library for all my projects. Feel free to improve.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
