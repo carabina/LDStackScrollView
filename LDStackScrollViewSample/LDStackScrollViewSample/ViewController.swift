@@ -109,7 +109,7 @@ class ViewController: UIViewController {
     }
     
     func changeAxisPressed(_ sender:UIButton){
-        stackScrollView.axis = stackScrollView.axis == .vertical ? .horizontal : .vertical
+        stackScrollView.stackView.axis = stackScrollView.stackView.axis == .vertical ? .horizontal : .vertical
     }
 }
 

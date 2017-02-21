@@ -1,5 +1,5 @@
 //
-//  StackScrollView.swift
+//  LDStackScrollView.swift
 //  Pods
 //
 //  Created by Léo Derbois on 20/02/2017.
@@ -10,9 +10,10 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class LDStackScrollView: UIView {
-    public let scrollView = UIScrollView()
-    let stackView = UIStackView()
     
+    // MARK: - Properties
+    public let scrollView = UIScrollView()
+    public let stackView = UIStackView()
     lazy var constraintLayoutHeight : NSLayoutConstraint = {
          return self.stackView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor)
     }()
@@ -20,18 +21,8 @@ public class LDStackScrollView: UIView {
         return self.stackView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
     }()
     
-    public var axis : UILayoutConstraintAxis = .vertical {
-        didSet{
-            updateAxisConstraint()
-
-            layoutIfNeeded()
-            stackView.axis = axis
-
-        }
-    }
-    
+    // MARK: - Init
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         ui_setup()
     }
@@ -39,24 +30,29 @@ public class LDStackScrollView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         ui_setup()
+
     }
-    
-    override public func layoutSubviews() {
-        super.layoutSubviews()
+    // MARK: - Notifications
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        // handle axis change in stackview
+        if keyPath == "axis"{
+            updateAxisConstraint()
+
+        }
         
     }
-    public init(axis:UILayoutConstraintAxis = .vertical) {
-        self.axis = axis
-        super.init(frame: CGRect.zero)
-
+    // MARK: - Deinit
+    deinit{
+        stackView.removeObserver(self, forKeyPath: "axis")
     }
 
 }
 @available(iOS 9.0, *)
 extension LDStackScrollView {
+    // MARK: - setup the UI
     func ui_setup(){
+                // ScrollView Setup
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -67,6 +63,7 @@ extension LDStackScrollView {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         
+        // Stackview Setup
         stackView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(stackView)
         
@@ -75,63 +72,19 @@ extension LDStackScrollView {
         stackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
         stackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
         
-        stackView.axis = axis
+        stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
-        stackView.spacing = 8
         updateAxisConstraint()
-        
+
+        // Add Observer for stackview axis change handle
+        stackView.addObserver(self, forKeyPath: "axis", options: NSKeyValueObservingOptions.new, context: nil)
+
     }
-    
+    // MARK: - update constraint for axis change
     func updateAxisConstraint(){
-        
-        constraintLayoutWidth.isActive = axis == .vertical
-        constraintLayoutHeight.isActive = axis == .horizontal
-    }
-}
-// MARK: - StackView Wrap
-@available(iOS 9.0, *)
-extension LDStackScrollView {
-    public  func addArrangedSubview(_ view: UIView){
-        stackView.addArrangedSubview(view)
-    }
-
-    public func removeArrangedSubview(_ view: UIView){
-        stackView.removeArrangedSubview(view)
-    }
-
-    public func insertArrangedSubview(_ view: UIView, at stackIndex: Int){
-        stackView.insertArrangedSubview(view, at: stackIndex)
-    }
-
-
-    public var distribution: UIStackViewDistribution{
-        set{
-            stackView.distribution = distribution
-        }
-        get{
-            return stackView.distribution
-        }
+        constraintLayoutWidth.isActive = stackView.axis == .vertical
+        constraintLayoutHeight.isActive = stackView.axis == .horizontal
     }
     
-
-    public var alignment: UIStackViewAlignment{
-        set{
-            stackView.alignment = alignment
-        }
-        get{
-            return stackView.alignment
-        }
-    }
-
-    
-    public var spacing: CGFloat{
-        set{
-            stackView.spacing = spacing
-        }
-        get{
-            return stackView.spacing
-        }
-    }
-
 }
